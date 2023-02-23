@@ -7,7 +7,7 @@
 ## Prerequisites
 - WordPress (version 6.1.1+)
 - Plugin of WooCommerce
-- MerchantID and SecurityKey from cpay team
+- MerchantID and SecurityKey (from cpay team)
 
 ## Install
 
@@ -15,15 +15,15 @@
 
 1. sign in the server of WorPress
 
-2. enter WordPress directory, by running command `cd /path/to/wordpress/wp-content/plugins/`.
+2. enter directory of WordPress, by running command `cd /path/to/wordpress/wp-content/plugins/`.
 
-3. get the codes, by running command `git clone https://github.com/cpayfinance/cpay-credit-card-gateway-wp.git`.
+3. fetch the codes, by running command `git clone https://github.com/cpayfinance/cpay-crypto-gateway-wp.git`.
 
-### Download zip
+### or By Downloading
 
-1. download zip by the endpoint (`https://github.com/cpayfinance/cpay-credit-card-gateway-wp/archive/refs/heads/main.zip`)
+1. download zip from the endpoint (`https://github.com/cpayfinance/cpay-crypto-gateway-wp/archive/refs/heads/main.zip`)
 
-2. upload codes to the directory of WorPress on the server, unzip the code.
+2. upload the zip to directory of WorPress on the server, unzip it.
 
 ## Config
 1. sign in admin's dashboard of WordPress
@@ -40,3 +40,4 @@
 
 ---
 After installing and setting, users will be shown payment option of `CPay Crypto Payment Gateway` on the page of `checkout order`
+
