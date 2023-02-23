@@ -7,7 +7,7 @@
 ## Prerequisites
 - WordPress (version 6.1.1+)
 - Plugin of WooCommerce
-- Get MerchantID and SecurityKey
+- MerchantID and SecurityKey from cpay team
 
 ## Install
 
@@ -38,5 +38,5 @@
 
 6. set `MerchantID` and `SecurityKey` (required), `Title` and `Description` are optional, save the setting finally.
 
-
+---
 After installing and setting, users will be shown payment option of `CPay Crypto Payment Gateway` on the page of `checkout order`
