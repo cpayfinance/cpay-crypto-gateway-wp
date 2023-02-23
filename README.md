@@ -25,7 +25,7 @@
 
 2. upload codes to the directory of WorPress on the server, unzip the code.
 
-### Config
+## Config
 1. sign in admin's dashboard of WordPress
 
 2. click `plugins` of the navigation bar on the left, and select the `installed plugins` item.
@@ -37,5 +37,6 @@
 5. select tab of `payment`, enable it and click `CPay Crypto Payment Gateway` into the setting page.
 
 6. set `MerchantID` and `SecurityKey` (required), `Title` and `Description` are optional, save the setting finally.
+
 
 After installing and setting, users will be shown payment option of `CPay Crypto Payment Gateway` on the page of `checkout order`
