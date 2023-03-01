@@ -23,6 +23,7 @@
 
 > See the figure below:  
 > ![install-by-git](https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/install-by-git.png)
+![x](https://pics3.baidu.com/feed/9358d109b3de9c82439164a3c779420118d8432e.jpeg@f_auto?token=0264b0f801a179b2d0fa26f5d5bfb6c9)
 
 ### or By Uploading
 
