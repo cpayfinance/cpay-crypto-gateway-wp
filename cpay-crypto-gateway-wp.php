@@ -1,10 +1,10 @@
 <?php
 
 /*
- * Plugin Name: Cpay Crypto Payment Gateway
+ * Plugin Name: CPay Crypto Payment Gateway
  * Plugin URI: https://cpay.finance
- * Description: Cpay Crypto payment gateway.
- * Author: Cpay
+ * Description: CPay Crypto payment gateway.
+ * Author: CPay
  * Author URI: https://cpay.finance
  * Version: 1.0.0
  *
@@ -112,39 +112,39 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
         public function init_form_fields() {
             $this->form_fields = array(
                 'enabled'     => array(
-                    'title'   => __('Enable/Disable', 'Cpay Crypto'),
+                    'title'   => __('Enable/Disable', 'CPay Crypto'),
                     'type'    => 'checkbox',
-                    'label'   => __('Enable Cpay Crypto', 'Cpay Crypto'),
+                    'label'   => __('Enable CPay Crypto', 'CPay Crypto'),
                     'default' => 'yes',
                 ),
                 'title'       => array(
-                    'title'       => __('Title', 'Cpay Crypto'),
+                    'title'       => __('Title', 'CPay Crypto'),
                     'type'        => 'text',
-                    'description' => __('This controls the title the user can see during checkout.', 'Cpay Crypto'),
-                    'default'     => __('Cpay Crypto', 'Cpay Crypto'),
+                    'description' => __('This controls the title the user can see during checkout.', 'CPay Crypto'),
+                    'default'     => __('CPay Crypto', 'CPay Crypto'),
                 ),
                 'description' => array(
-                    'title'       => __('Description', 'Cpay Crypto'),
+                    'title'       => __('Description', 'CPay Crypto'),
                     'type'        => 'textarea',
-                    'description' => __('This controls the title the user can see during checkout.', 'Cpay Crypto'),
-                    'default'     => __('You will be redirected to cpay.finance to complete your purchase.', 'Cpay Crypto'),
+                    'description' => __('This controls the title the user can see during checkout.', 'CPay Crypto'),
+                    'default'     => __('You will be redirected to cpay.finance to complete your purchase.', 'CPay Crypto'),
                 ),
                 'cpayhost'  => array(
-                    'title'       => __('Cpay Host', 'https://example.com'),
+                    'title'       => __('CPay Host', 'https://example.com'),
                     'type'        => 'text',
-                    'description' => __('Please enter the host, You can get this information from cpay.finance', 'Cpay'),
-                    'default'     => '',
+                    'description' => __('Please enter the host, You can get this information from cpay.finance', 'CPay'),
+                    'default'     => 'https://example.com',
                 ),
                 'merchantid'  => array(
-                    'title'       => __('Your MerchantID', 'N/A'),
+                    'title'       => __('MerchantID', 'N/A'),
                     'type'        => 'text',
-                    'description' => __('Please enter your Merchant ID, You can get this information from cpay.finance', 'Cpay Crypto'),
+                    'description' => __('Please enter your Merchant ID, You can get this information from cpay.finance', 'CPay Crypto'),
                     'default'     => 'N/A',
                 ),
                 'secret'      => array(
                     'title'       => __('SecurityKey', ''),
                     'type'        => 'password',
-                    'description' => __('Please enter your cpay SecurityKey, You can get this information from cpay.finance', 'Cpay Crypto'),
+                    'description' => __('Please enter your SecurityKey, You can get this information from cpay.finance', 'CPay Crypto'),
                     'default'     => '*',
                 ),
             );
@@ -159,11 +159,11 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
          */
         public function admin_options() {
             ?>
-            <h3><?php esc_html_e('Cpay Checkout', 'Cpay'); ?></h3>
+            <h3><?php esc_html_e('CPay Checkout', 'CPay'); ?></h3>
 
             <div id="wc_get_started">
-                <span class="main"><?php esc_html_e('Provides a secure way to accept crypto currencies.', 'Cpay'); ?></span>
-                <p><a href="https://cpay.finance" target="_blank" class="button button-primary"><?php esc_html_e('Join free', 'Cpay'); ?></a> <a href="https://cpay.finance" target="_blank" class="button"><?php esc_html_e('Learn more about WooCommerce and Cpay', 'Cpay'); ?></a></p>
+                <span class="main"><?php esc_html_e('Provides a secure way to accept crypto currencies.', 'CPay'); ?></span>
+                <p><a href="https://cpay.finance" target="_blank" class="button button-primary"><?php esc_html_e('Join free', 'CPay'); ?></a> <a href="https://cpay.finance" target="_blank" class="button"><?php esc_html_e('Learn more about WooCommerce and CPay', 'CPay'); ?></a></p>
             </div>
 
             <table class="form-table">
@@ -297,15 +297,15 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             if ($order_status == 14) {
                 // Do your magic here, and return 200 OK to ljkjcpay.
                 if ('pending' === $order->status) {
-                    $order->update_status('processing', sprintf(__('IPN: Payment completed notification from Cpay', 'woocommerce')));
+                    $order->update_status('processing', sprintf(__('IPN: Payment completed notification from CPay', 'woocommerce')));
                     $order->save();
-                    $order->add_order_note( __( 'IPN: Update status event for Cpay', 'woocommerce' ) . ' ' . $orderid);
+                    $order->add_order_note( __( 'IPN: Update status event for CPay', 'woocommerce' ) . ' ' . $orderid);
                 }
                 echo 'ok';
                 exit;
             } else {
                 if ('failed' !== $order->status) {
-                    $order->update_status('failed', sprintf(__('IPN: Payment failed notification from Cpay', 'woocommerce')));
+                    $order->update_status('failed', sprintf(__('IPN: Payment failed notification from CPay', 'woocommerce')));
                 }
                 echo 'ok';
                 exit;
@@ -320,7 +320,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
          */
         public function apikey_missingmessage() {
             $message  = '<div class="notice notice-info is-dismissible">';
-            $message .= '<p><strong>Gateway Disabled</strong> You should enter your SecurityKey in Cpay configuration. <a href="' . get_admin_url() . 'admin.php?page=wc-settings&amp;tab=checkout&amp;section=ljkjcpay">Click here to configure</a></p>';
+            $message .= '<p><strong>Gateway Disabled</strong> You should enter your SecurityKey in CPay configuration. <a href="' . get_admin_url() . 'admin.php?page=wc-settings&amp;tab=checkout&amp;section=ljkjcpay">Click here to configure</a></p>';
             $message .= '</div>';
 
             echo $message;
@@ -335,7 +335,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
          */
         public function secret_missingmessage() {
             $message  = '<div class="notice notice-info is-dismissible">';
-            $message .= '<p><strong>Gateway Disabled</strong> You should check your MerchantID/SecurityKey/Host in Cpay configuration. <a href="' . get_admin_url() . 'admin.php?page=wc-settings&amp;tab=checkout&amp;section=ljkjcpay">Click here to configure!</a></p>';
+            $message .= '<p><strong>Gateway Disabled</strong> Please check your MerchantID / SecurityKey / Host in CPay configuration. </p>';
             $message .= '</div>';
 
             echo $message;
