@@ -9,6 +9,8 @@
 - Plugin of WooCommerce
 - MerchantID and SecurityKey (from cpay team)
 
+---
+
 ## Install
 
 ### By Git
@@ -17,27 +19,51 @@
 
 2. enter directory of WordPress, by running command `cd /path/to/wordpress/wp-content/plugins/`.
 
-3. fetch the codes, by running command `git clone https://github.com/cpayfinance/cpay-crypto-gateway-wp.git`.
+3. clone the repository from `GitHub`, by running command `git clone https://github.com/cpayfinance/cpay-crypto-gateway-wp.git`.
 
-### or By Downloading
+> See the figure below:  
+> ![install-by-git](images/install-by-git.png)
+
+### or By Uploading
 
 1. download zip from the endpoint (`https://github.com/cpayfinance/cpay-crypto-gateway-wp/archive/refs/heads/main.zip`)
 
-2. upload the zip to directory of WorPress on the server, unzip it.
+2. sign in administrator's dashboard of WordPress and upload the zip by following these steps: 
+   go to `Plugins` => `Add New` => `Upload Plugin` => `Select Files` => `Install Now` => `Go to Plugin Installer`
 
-## Config
-1. sign in admin's dashboard of WordPress
-
-2. click `plugins` of the navigation bar on the left, and select the `installed plugins` item.
-
-3. plugin of `CPay Crypto Payment Gateway` will be shown under the `unacticated` tag, activate it.
-
-4. click `WooCommerce` of the navigation bar on the left, and select the `settings` item.
-
-5. select tab of `payment`, enable it and click `CPay Crypto Payment Gateway` into the setting page.
-
-6. set `MerchantID` and `SecurityKey` (required), `Title` and `Description` are optional, save the setting finally.
+> See the figures below:  
+> ![install-by-uploading](images/install-by-uploading.png)
 
 ---
-After installing and setting, users will be shown payment option of `CPay Crypto Payment Gateway` on the page of `checkout order`
+
+## Activate plugin
+1. sign in administrator's dashboard of WordPress
+
+2. activate it: 
+   go to `Plugins` => `Installed Plugins` => `Inactive` => activate `CPay Crypto Payment Gateway`
+
+---
+
+## Config
+1. sign in administrator's dashboard of WordPress
+
+2. enable it:
+   go to `WooCommerce` => `Settings` => `Payments` => open `CPay Crypto Enabled` => click `Save changes`
+
+> See the figures below:  
+> ![enable-it](images/enable-it.png)
+
+2. set configuration:
+   go to `WooCommerce` => `Settings` => `Payments` => `CPay Crypto` => click `Manage` => click `Save changes`
+
+> See the figures below:  
+> ![config-it](images/config-it.png)
+
+---
+
+## Using
+After doing these steps, users will be shown payment option of `CPay Crypto` on the page of `checkout order`
+
+> See the figures below:  
+> ![config-it](images/checkout-page.png)
 
