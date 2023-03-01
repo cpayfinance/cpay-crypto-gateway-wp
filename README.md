@@ -23,7 +23,9 @@
 
 > See the figure below:  
 > ![install-by-git](https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/install-by-git.png)
-<img src="https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/checkout-page.png">
+<img src="https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/checkout-page.png"  width="800" />
+<img src="myimage.png" width="800" />
+
 
 
 ### or By Uploading
