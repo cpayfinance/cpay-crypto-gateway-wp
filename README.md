@@ -64,8 +64,8 @@
 ---
 
 ## Using
-After doing these steps, users will be shown payment option of `CPay Crypto` on the page of `checkout order`
+After doing these steps, users will be shown payment option of `CPay Crypto` on the page of `Checkout`
 
 > See the figures below:  
-> ![config-it](https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/checkout-page.png)
+> ![config-it](https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/checkout-page.jpg)
 
