@@ -125,6 +125,12 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                     'description' => __('This controls the title the user can see during checkout.', 'Cpay Crypto'),
                     'default'     => __('You will be redirected to cpay.finance to complete your purchase.', 'Cpay Crypto'),
                 ),
+                'cpayhost'  => array(
+                    'title'       => __('Cpay Host', 'https://example.com'),
+                    'type'        => 'text',
+                    'description' => __('Please enter the host, You can get this information from cpay.finance', 'Cpay'),
+                    'default'     => '',
+                ),
                 'merchantid'  => array(
                     'title'       => __('Your MerchantID', 'N/A'),
                     'type'        => 'text',
@@ -226,7 +232,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                 'body' => implode($ps, '&'),
             );
 
-            $url       = 'https://api.cpay.ltd/openapi/v1/createOrder';
+            $url       = trim($this->cpayhost, '/') . '/openapi/v1/createOrder';
             $response  = wp_safe_remote_post($url, $params);
             if (( false === is_wp_error($response) ) && ( 200 === $response['response']['code'] ) && ( 'OK' === $response['response']['message'] )) {
                 $body = json_decode($response['body'], true);
