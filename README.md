@@ -35,7 +35,7 @@
 > See the figures below:  
 > ![install-by-uploading](https://static.cpay.ltd/images/docs/install-by-uploading.png)
 
----
+
 
 ## Activate Plugin
 1. sign in administrator's dashboard of WordPress
@@ -43,7 +43,7 @@
 2. activate it: 
    go to `Plugins` => `Installed Plugins` => `Inactive` => activate `CPay Crypto Payment Gateway`
 
----
+
 
 ## Config
 1. sign in administrator's dashboard of WordPress
@@ -60,7 +60,7 @@
 > See the figures below:  
 > ![config-it](https://static.cpay.ltd/images/docs/config-it.png)
 
----
+
 
 ## Using
 After doing these steps, users will be shown payment option of `CPay Crypto` on the page of `Checkout`
