@@ -71,6 +71,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             $this->title       = $this->get_option('title');
             $this->description = $this->get_option('description');
             $this->merchantid  = $this->get_option('merchantid');
+            $this->cpayhost    = $this->get_option('cpayhost');
 
             $this->apikey         = '1';
             $this->secret         = $this->get_option('secret');
@@ -95,6 +96,11 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
 
             // Checking if app_secret is not empty.
             if (empty($this->secret) === true) {
+                add_action('admin_notices', array( &$this, 'secret_missingmessage' ));
+            }
+            
+            // Checking if app_secret is not empty.
+            if (empty($this->cpayhost) === true) {
                 add_action('admin_notices', array( &$this, 'secret_missingmessage' ));
             }
 
@@ -313,7 +319,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
          */
         public function apikey_missingmessage() {
             $message  = '<div class="notice notice-info is-dismissible">';
-            $message .= '<p><strong>Gateway Disabled</strong> You should enter your API key in Cpay configuration. <a href="' . get_admin_url() . 'admin.php?page=wc-settings&amp;tab=checkout&amp;section=ljkjcpay">Click here to configure</a></p>';
+            $message .= '<p><strong>Gateway Disabled</strong> You should enter your SecurityKey in Cpay configuration. <a href="' . get_admin_url() . 'admin.php?page=wc-settings&amp;tab=checkout&amp;section=ljkjcpay">Click here to configure</a></p>';
             $message .= '</div>';
 
             echo $message;
@@ -328,7 +334,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
          */
         public function secret_missingmessage() {
             $message  = '<div class="notice notice-info is-dismissible">';
-            $message .= '<p><strong>Gateway Disabled</strong> You should check your MerchantID and SecurityKey in Cpay configuration. <a href="' . get_admin_url() . 'admin.php?page=wc-settings&amp;tab=checkout&amp;section=ljkjcpay">Click here to configure!</a></p>';
+            $message .= '<p><strong>Gateway Disabled</strong> You should check your MerchantID/SecurityKey/Host in Cpay configuration. <a href="' . get_admin_url() . 'admin.php?page=wc-settings&amp;tab=checkout&amp;section=ljkjcpay">Click here to configure!</a></p>';
             $message .= '</div>';
 
             echo $message;
