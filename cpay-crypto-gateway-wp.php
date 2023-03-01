@@ -19,7 +19,6 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
     add_filter('woocommerce_payment_gateways', 'wc_ljkjcpay_crypto_gateway');
     add_action('plugins_loaded', 'woocommerce_ljkjcpay_crypto_init', 0);
 
-
     /**
      * Add the gateways to WooCommerce
      *
@@ -36,7 +35,6 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
     function wc_ljkjcpay_crypto_gateway( $methods) {
         $methods[] = 'ljkjcpaycrypto';
         return $methods;
-
     }
 
     /**
@@ -242,7 +240,9 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             $response  = wp_safe_remote_post($url, $params);
             if (( false === is_wp_error($response) ) && ( 200 === $response['response']['code'] ) && ( 'OK' === $response['response']['message'] )) {
                 $body = json_decode($response['body'], true);
-                if (isset($body['code']) && $body['code'] == 0) {
+                $code = isset($body['code']) ? $body['code'] : -1;
+                $msg = isset($body['msg']) ? $body['msg'] : 'create order failed';
+                if ($code == 0) {
                     // 更新订单状态为等待中 (等待第三方支付网关返回)
                     $order->update_status('pending', __( 'Awaiting payment', 'woocommerce' ));
                     $order->reduce_order_stock(); // 减少库存
@@ -253,9 +253,10 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                     );
                     return $rr;
                 }
+                wc_add_notice('Payment error: '.sprintf("%s [code=%d]", $msg, $code), 'error');
+                exit();
             }
-            wc_add_notice(__('Payment error:', 'cpay'), 'error', '' );
-
+            wc_add_notice('Payment error: system upgrade, please try later.', 'error');
         }//end process_payment()
 
         /**
