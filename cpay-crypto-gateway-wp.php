@@ -200,12 +200,12 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
         {
             global $woocommerce;
             $order = wc_get_order($orderid);
-            if (strtolower(get_woocommerce_currency()) != 'usd') {
-                wc_add_notice(__('Payment error:', 'cpay'), 'error', 'currency is not supported. [USD ONLY]' );
+            if (strtoupper(get_woocommerce_currency()) != 'USD') {
+                wc_add_notice('Checkout error: currency is not supported. [USD ONLY]', 'error');
                 exit();
             }
             if ($order->get_total() < 1) {
-                wc_add_notice(__('Payment error:', 'cpay'), 'error', 'order total amount less than $1.00' );
+                wc_add_notice('Checkout error: order amount cannot less than $1.00', 'error');
                 exit();
             }
 
