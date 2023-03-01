@@ -22,8 +22,7 @@
 3. clone the repository from `GitHub`, by running command `git clone https://github.com/cpayfinance/cpay-crypto-gateway-wp.git`.
 
 > See the figure below:  
-> ![install-by-git](https://static.cpay.ltd/images/docs/enable-it.png)
-<img src="https://static.cpay.ltd/images/docs/enable-it.png" width="800" />
+> ![install-by-git](https://static.cpay.ltd/images/docs/install-by-git.png)
 
 
 
@@ -35,7 +34,7 @@
    go to `Plugins` => `Add New` => `Upload Plugin` => `Select Files` => `Install Now` => `Go to Plugin Installer`
 
 > See the figures below:  
-> ![install-by-uploading](https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/install-by-uploading.png)
+> ![install-by-uploading](https://static.cpay.ltd/images/docs/install-by-uploading.png)
 
 ---
 
@@ -54,13 +53,13 @@
    go to `WooCommerce` => `Settings` => `Payments` => open `CPay Crypto Enabled` => click `Save changes`
 
 > See the figures below:  
-> ![enable-it](/images/enable-it.png)
+> ![enable-it](https://static.cpay.ltd/images/docs/enable-it.png)
 
 2. set configuration:
    go to `WooCommerce` => `Settings` => `Payments` => `CPay Crypto` => click `Manage` => click `Save changes`
 
 > See the figures below:  
-> ![config-it](https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/config-it.png)
+> ![config-it](https://static.cpay.ltd/images/docs/config-it.png)
 
 ---
 
@@ -68,5 +67,5 @@
 After doing these steps, users will be shown payment option of `CPay Crypto` on the page of `Checkout`
 
 > See the figures below:  
-> ![config-it](https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/checkout-page.jpg)
+> ![config-it](https://static.cpay.ltd/images/docs/checkout-page.jpg)
 
