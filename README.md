@@ -38,7 +38,7 @@
 
 ---
 
-## Activate plugin
+## Activate Plugin
 1. sign in administrator's dashboard of WordPress
 
 2. activate it: 
