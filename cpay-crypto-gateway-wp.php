@@ -112,39 +112,39 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
         public function init_form_fields() {
             $this->form_fields = array(
                 'enabled'     => array(
-                    'title'   => __('Enable/Disable', 'CPay Crypto'),
+                    'title'   => __('Enable/Disable', ''),
                     'type'    => 'checkbox',
-                    'label'   => __('Enable CPay Crypto', 'CPay Crypto'),
+                    'label'   => __('Enable CPay Crypto', ''),
                     'default' => 'yes',
                 ),
                 'title'       => array(
-                    'title'       => __('Title', 'CPay Crypto'),
+                    'title'       => __('Title', ''),
                     'type'        => 'text',
-                    'description' => __('This controls the title the user can see during checkout.', 'CPay Crypto'),
-                    'default'     => __('CPay Crypto', 'CPay Crypto'),
+                    'description' => __('This controls the title the user can see during checkout.', ''),
+                    'default'     => __('CPay Crypto', ''),
                 ),
                 'description' => array(
-                    'title'       => __('Description', 'CPay Crypto'),
+                    'title'       => __('Description', ''),
                     'type'        => 'textarea',
-                    'description' => __('This controls the title the user can see during checkout.', 'CPay Crypto'),
-                    'default'     => __('You will be redirected to cpay.finance to complete your purchase.', 'CPay Crypto'),
+                    'description' => __('This controls the title the user can see during checkout.', ''),
+                    'default'     => __('You will be redirected to cpay.finance to complete your purchase.', ''),
                 ),
                 'cpayhost'  => array(
-                    'title'       => __('CPay Host', 'https://example.com'),
+                    'title'       => __('CPay Host', ''),
                     'type'        => 'text',
-                    'description' => __('Please enter the host, You can get this information from cpay.finance', 'CPay'),
+                    'description' => __('Please enter the host, You can get this information from cpay.finance', ''),
                     'default'     => 'https://example.com',
                 ),
                 'merchantid'  => array(
-                    'title'       => __('MerchantID', 'N/A'),
+                    'title'       => __('MerchantID', ''),
                     'type'        => 'text',
-                    'description' => __('Please enter your Merchant ID, You can get this information from cpay.finance', 'CPay Crypto'),
+                    'description' => __('Please enter your Merchant ID, You can get this information from cpay.finance', ''),
                     'default'     => 'N/A',
                 ),
                 'secret'      => array(
                     'title'       => __('SecurityKey', ''),
                     'type'        => 'password',
-                    'description' => __('Please enter your SecurityKey, You can get this information from cpay.finance', 'CPay Crypto'),
+                    'description' => __('Please enter your SecurityKey, You can get this information from cpay.finance', ''),
                     'default'     => '*',
                 ),
             );
