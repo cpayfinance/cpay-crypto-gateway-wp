@@ -200,6 +200,8 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
         {
             global $woocommerce;
             $order = wc_get_order($orderid);
+            wc_add_notice('Payment xxx error:', 'error', 'currency is not supported. [USD ONLY]' );
+
             if (strtolower(get_woocommerce_currency()) != 'usd') {
                 wc_add_notice(__('Payment error:', 'cpay'), 'error', 'currency is not supported. [USD ONLY]' );
                 exit();
