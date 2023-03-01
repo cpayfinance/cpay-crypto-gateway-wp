@@ -22,9 +22,8 @@
 3. clone the repository from `GitHub`, by running command `git clone https://github.com/cpayfinance/cpay-crypto-gateway-wp.git`.
 
 > See the figure below:  
-> ![install-by-git](https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/install-by-git.png)
-<img src="https://github.com/cpayfinance/cpay-crypto-gateway-wp/blob/main/images/install-by-git.png" width="800" />
-<img src="/images/install-by-git.png" width="800" />
+> ![install-by-git](https://static.cpay.ltd/images/docs/enable-it.png)
+<img src="https://static.cpay.ltd/images/docs/enable-it.png" width="800" />
 
 
 
