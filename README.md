@@ -9,7 +9,6 @@
 - WooCommerce Plugin
 - MerchantID and SecurityKey (from CPay)
 
----
 
 ## Install
 
