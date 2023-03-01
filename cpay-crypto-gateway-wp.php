@@ -97,11 +97,10 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                 add_action('admin_notices', array( &$this, 'secret_missingmessage' ));
             }
             
-            // Checking if app_secret is not empty.
+            // Checking if cpayhost is not empty.
             if (empty($this->cpayhost) === true) {
                 add_action('admin_notices', array( &$this, 'secret_missingmessage' ));
             }
-
         }
 
         /**
@@ -127,7 +126,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                     'title'       => __('Description', ''),
                     'type'        => 'textarea',
                     'description' => __('This controls the title the user can see during checkout.', ''),
-                    'default'     => __('You will be redirected to cpay.finance to complete your purchase.', ''),
+                    'default'     => __('You will be redirected to cpay.finance to complete your purchasing.', ''),
                 ),
                 'cpayhost'  => array(
                     'title'       => __('CPay Host', ''),
@@ -138,7 +137,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                 'merchantid'  => array(
                     'title'       => __('MerchantID', ''),
                     'type'        => 'text',
-                    'description' => __('Please enter your Merchant ID, You can get this information from cpay.finance', ''),
+                    'description' => __('Please enter your MerchantID, You can get this information from cpay.finance', ''),
                     'default'     => 'N/A',
                 ),
                 'secret'      => array(
@@ -148,9 +147,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                     'default'     => '*',
                 ),
             );
-
         }//end init_form_fields()
-
 
         /**
          * Define adminOptions function
@@ -170,9 +167,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                 <?php $this->generate_settings_html(); ?>
             </table>
             <?php
-
         }//end admin_options()
-
 
         /**
          *  There are no payment fields for Cpay, but we want to show the description if set.
@@ -183,9 +178,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             if (strlen($this->description) > 0) {
                 echo esc_html($this->description);
             }
-
         }//end payment_fields()
-
 
         /**
          * Process the payment and return the result
@@ -204,6 +197,18 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             }
             if ($order->get_total() < 1) {
                 wc_add_notice('Checkout error: order amount cannot less than $1.00', 'error');
+                exit();
+            }
+            if (empty($this->merchantid) === true) {
+                wc_add_notice('Checkout error: please contact administrator [C1000]', 'error');
+                exit();
+            }
+            if (empty($this->secret) === true) {
+                wc_add_notice('Checkout error: please contact administrator [C1001]', 'error');
+                exit();
+            }
+            if (empty($this->cpayhost) === true) {
+                wc_add_notice('Checkout error: please contact administrator [C1002]', 'error');
                 exit();
             }
 
@@ -241,7 +246,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             if (( false === is_wp_error($response) ) && ( 200 === $response['response']['code'] ) && ( 'OK' === $response['response']['message'] )) {
                 $body = json_decode($response['body'], true);
                 $code = isset($body['code']) ? $body['code'] : -1;
-                $msg = isset($body['msg']) ? $body['msg'] : 'create order failed';
+                $errmsg = isset($body['msg']) ? $body['msg'] : 'create order failed';
                 if ($code == 0) {
                     // 更新订单状态为等待中 (等待第三方支付网关返回)
                     $order->update_status('pending', __( 'Awaiting payment', 'woocommerce' ));
@@ -253,10 +258,10 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                     );
                     return $rr;
                 }
-                wc_add_notice('Payment error: '.sprintf("%s [code=%d]", $msg, $code), 'error');
+                wc_add_notice('Payment error: '.sprintf("%s [C%d]", $errmsg, $code), 'error');
                 exit();
             }
-            wc_add_notice('Payment error: system upgrade, please try later.', 'error');
+            wc_add_notice('Payment error: system upgrade, please try it later.', 'error');
         }//end process_payment()
 
         /**
