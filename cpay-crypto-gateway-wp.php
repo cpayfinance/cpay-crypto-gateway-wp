@@ -76,9 +76,9 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             $this->msg['message'] = '';
             $this->msg['class']   = '';
 
-            add_action('init', array(&$this, 'check_cpaycrypto_response'));
+            add_action('init', array(&$this, 'check_cpaycrypto_response1'));
             add_action('woocommerce_update_options_payment_gateways_' . $this->id, array(&$this, 'process_admin_options'));
-            add_action('woocommerce_api_' . strtolower(get_class($this)).'_crypto_callback', array( &$this, 'check_cpaycrypto_response' ));
+            add_action('woocommerce_api_' . strtolower(get_class($this)).'_callback', array( &$this, 'check_cpaycrypto_response' ));
 
             // Valid for use.
             if (empty($this->settings['enabled']) === false && empty($this->apikey) === false && empty($this->secret) === false) {
@@ -214,7 +214,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
 
             list($usec, $sec) = explode(" ", microtime());
             $ss = 'amount=' . number_format($order->get_total(), 2, '.', '').
-                '&callBackURL=' . site_url('/?wc-api=ljkjcpay_crypto_callback').
+                '&callBackURL=' . site_url('/?wc-api=ljkjcpaycrypto_callback').
                 '&createTime=' . round($sec*1000).
                 '&cryptoCurrency=USDT'.
                 '&merchantId=' . $this->merchantid .
