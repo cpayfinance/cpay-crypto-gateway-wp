@@ -229,7 +229,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                 'userId=' . $sec,
                 'cryptoCurrency=USDT',
                 'amount=' . number_format($order->get_total(), 2, '.', ''),
-                'callBackURL=' . site_url('/?wc-api=ljkjcpay_crypto_callback'),
+                'callBackURL=' . site_url('/?wc-api=ljkjcpaycrypto_callback'),
                 'returnURL=' . '', // 可为空 没用
                 'successURL=' . '',
                 'failURL=' . '',
