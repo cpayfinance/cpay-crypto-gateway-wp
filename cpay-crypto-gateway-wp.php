@@ -76,15 +76,12 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             $this->msg['message'] = '';
             $this->msg['class']   = '';
 
-            add_action('init', array(&$this, 'check_cpaycrypto_response1'));
-            add_action('woocommerce_update_options_payment_gateways_' . $this->id, array(&$this, 'process_admin_options'));
-            add_action('woocommerce_api_' . strtolower(get_class($this)).'_callback', array( &$this, 'check_cpaycrypto_response' ));
+            add_action('woocommerce_api_' . strtolower(get_class($this)).'_callback', array( &$this, 'cpaycrypto_callback_processor' ));
 
             // Valid for use.
+            $this->enabled = 'no';
             if (empty($this->settings['enabled']) === false && empty($this->apikey) === false && empty($this->secret) === false) {
                 $this->enabled = 'yes';
-            } else {
-                $this->enabled = 'no';
             }
 
             // Checking if apikey is not empty.
@@ -213,37 +210,27 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             }
 
             list($usec, $sec) = explode(" ", microtime());
-            $ss = 'amount=' . number_format($order->get_total(), 2, '.', '').
-                '&callBackURL=' . site_url('/?wc-api=ljkjcpaycrypto_callback').
-                '&createTime=' . round($sec*1000).
-                '&cryptoCurrency=USDT'.
-                '&merchantId=' . $this->merchantid .
-                '&merchantTradeNo=' . $this->merchantid . '_' . $orderid .
-                '&userId=' . $sec.
-                '&key=' . $this->secret;
+            $params = [
+                'merchantId' => $this->merchantid,
+                'merchantTradeNo' => $this->merchantid . '_' . $orderid,
+                'createTime' => round($sec*1000),
+                'userId' => $sec,
+                'cryptoCurrency' => 'USDT',
+                'amount' => number_format($order->get_total(), 2, '.', ''),
+                'callBackURL' => site_url('/?wc-api=ljkjcpaycrypto_callback'),
+                'successURL' => '',
+                'failURL' => '',
+                'extInfo' => '',
+            ];
+            $params['sign'] = $this->gen_signature($params, $this->secret);
 
-            $ps = array(
-                'merchantId=' . $this->merchantid,
-                'merchantTradeNo=' . $this->merchantid . '_' . $orderid,
-                'createTime=' . round($sec*1000),
-                'userId=' . $sec,
-                'cryptoCurrency=USDT',
-                'amount=' . number_format($order->get_total(), 2, '.', ''),
-                'callBackURL=' . site_url('/?wc-api=ljkjcpaycrypto_callback'),
-                'returnURL=' . '', // 可为空 没用
-                'successURL=' . '',
-                'failURL=' . '',
-                'sign=' . hash_hmac("sha256", $ss, $this->secret),
-                'extInfo=' . '', // 可为空
-            );
-
-            $params    = array(
-                'body' => implode($ps, '&'),
-            );
-
+            $req = '';
+            foreach ($params as $k => $v) {
+                $req = $req . "{$k}={$v}&";
+            }
             $url       = trim($this->cpayhost, '/') . '/openapi/v1/createOrder';
-            $response  = wp_safe_remote_post($url, $params);
-            if (( false === is_wp_error($response) ) && ( 200 === $response['response']['code'] ) && ( 'OK' === $response['response']['message'] )) {
+            $response  = wp_safe_remote_post($url, array('body' => trim($req, '&')));
+            if ((false === is_wp_error($response)) && (200 === $response['response']['code']) && ('OK' === $response['response']['message'])) {
                 $body = json_decode($response['body'], true);
                 $code = isset($body['code']) ? $body['code'] : -1;
                 $errmsg = isset($body['msg']) ? $body['msg'] : 'create order failed';
@@ -270,7 +257,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
          *
          * @return string
          **/
-        public function check_cpaycrypto_response() {
+        public function cpaycrypto_callback_processor() {
             global $woocommerce;
             $body = file_get_contents('php://input');
             $body_data = json_decode($body, true);
@@ -317,7 +304,6 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             }
         }//end check_ljkjcpay_response()
 
-
         /**
          * Adds error message when not configured the api key.
          *
@@ -329,9 +315,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             $message .= '</div>';
 
             echo $message;
-
         }//end apikey_missingmessage()
-
 
         /**
          * Adds error message when not configured the secret.
@@ -344,8 +328,22 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             $message .= '</div>';
 
             echo $message;
-
         }//end secret_missingmessage()
 
+        public function gen_signature($params, $security_key) {
+            if (!is_array($params) || count($params) == 0) {
+                return '';
+            }
+
+            ksort($params);
+            $ps = '';
+            foreach ($params as $k => $v) {
+                if (!empty($v)) {
+                    $ps = $ps . "{$k}={$v}&";
+                }
+            }
+            $ps = $ps.'key='.$security_key;
+            return hash_hmac("sha256", $ps, $security_key);
+        }
     }//end class
 }//end if
