@@ -126,7 +126,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
                     'default'     => __('You will be redirected to cpay.finance to complete your purchasing.', ''),
                 ),
                 'cpayhost'  => array(
-                    'title'       => __('CPay Host', ''),
+                    'title'       => __('API Host', ''),
                     'type'        => 'text',
                     'description' => __('Please enter the host, You can get this information from cpay.finance', ''),
                     'default'     => 'https://example.com',
@@ -153,11 +153,10 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
          */
         public function admin_options() {
             ?>
-            <h3><?php esc_html_e('CPay Checkout', 'CPay'); ?></h3>
+            <h3><?php esc_html_e('CPay Crypto Checkout', 'CPay'); ?></h3>
 
             <div id="wc_get_started">
-                <span class="main"><?php esc_html_e('Provides a secure way to accept crypto currencies.', 'CPay'); ?></span>
-                <p><a href="https://cpay.finance" target="_blank" class="button button-primary"><?php esc_html_e('Join free', 'CPay'); ?></a> <a href="https://cpay.finance" target="_blank" class="button"><?php esc_html_e('Learn more about WooCommerce and CPay', 'CPay'); ?></a></p>
+                <p><a href="https://cpay.finance" target="_blank" class="button"><?php esc_html_e('Learn more about CPay', 'CPay'); ?></a></p>
             </div>
 
             <table class="form-table">
