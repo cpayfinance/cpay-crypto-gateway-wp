@@ -76,6 +76,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
             $this->msg['message'] = '';
             $this->msg['class']   = '';
 
+            add_action('woocommerce_update_options_payment_gateways_' . $this->id, array(&$this, 'process_admin_options'));
             add_action('woocommerce_api_' . strtolower(get_class($this)).'_callback', array( &$this, 'cpaycrypto_callback_processor' ));
 
             // Valid for use.
