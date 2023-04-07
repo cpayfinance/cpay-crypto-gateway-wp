@@ -61,7 +61,7 @@ if (is_plugin_active('woocommerce/woocommerce.php') === true) {
          **/
         public function __construct() {
             $this->id   = 'ljkjcpaycrypto';
-            $this->icon = ''; // plugins_url('images/crypto.png', __FILE__);
+            $this->icon = plugins_url('cpay-icon.png', __FILE__); // plugins_url('images/crypto.png', __FILE__);
 
             $this->init_form_fields();
             $this->init_settings();
